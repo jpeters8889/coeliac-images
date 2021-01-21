@@ -12,8 +12,6 @@ class Application
 {
     private string $basePath;
 
-    public static self $instance;
-
     public function __construct(string $basePath)
     {
         $this->basePath = $basePath;
@@ -22,13 +20,6 @@ class Application
     public function bootstrap()
     {
         $this->registerEnvironment();
-
-        $this->registerInstance();
-    }
-
-    protected function registerInstance()
-    {
-        self::$instance = $this;
     }
 
     protected function registerEnvironment()
@@ -54,7 +45,7 @@ class Application
 
     protected function renderException(Exception $exception): Response
     {
-        if(env('APP_ENV', 'local') === 'production') {
+        if(env('APP_ENV', 'local') !== 'local') {
             return new Response('', 404);
         }
 
