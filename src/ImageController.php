@@ -91,7 +91,7 @@ class ImageController
     protected function prepareResponse(): Response
     {
         $response = new Response();
-        $response->setContent($this->image->stream($this->fileExtension, '80'));
+        $response->setContent($this->image->stream($this->fileExtension, '87'));
         $response->header('Content-Type', $this->filesystem->mimeType($this->path));
 
         return $response;
