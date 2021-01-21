@@ -93,6 +93,7 @@ class ImageController
         $response = new Response();
         $response->setContent($this->image->stream($this->fileExtension, '87'));
         $response->header('Content-Type', $this->filesystem->mimeType($this->path));
+        $response->header('Cache-Control', 'max-age=31536000');
 
         return $response;
     }
